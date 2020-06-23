@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-center">
+    <!-- Form for admin login -->
+    <form class="form-inline" (submit)="checkAdmin()" [formGroup]="loginForm">
+        <input type="text"
+            class="form-control"
+            placeholder="Email"
+            formControlName="email">
+        <input type="password"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password">
+        <button type="submit">login</button>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+<!-- Display questions if the survey is incomplete -->
+<div *ngIf="!complete">
+    <div class="row">
+        <!-- Center aligned survey title -->
+        <div class="col-sm-4 offset-sm-4" style="text-align: center;">
+            <h3>{{template.name}}</h3>
+        </div>
+    </div>
+    <!-- List each question as a checkbox input with the question text as a linked label -->
+    <div class="row form-check" *ngFor="let question of template.questions; let i = index">
+        <div class="col-sm-2">
+            <input type="checkbox" (change)="updateAnswer($event, i)" [id]="'question'+i" 
+            [checked]="(survey.answers[i] != null && this.survey.answers[i].split(' || ')[1] != 'No')">
+        </div>
+        <div class="col-sm-8">
+            <label [for]="'question'+i">{{question}}</label>
+        </div>
+    </div>
+    <!-- Submit button to determine completeness -->
+    <div class="col-sm-4 offset-sm-4" style="text-align: center;">
+        <button class="btn-primary" (click)="completeSurvey()">Submit</button>
+    </div>
+</div>
+<!-- If the assessment is complete, show the thank you message -->
+<div *ngIf="complete">
+    <div class="row">
+        <div class="col-sm-4 offset-sm-4" style="text-align: center;">
+            <h2>Thank you for completing this survey</h2>
+        </div>
+    </div>
+</div>

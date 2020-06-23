@@ -1,0 +1,57 @@
+<!-- List of all existing users -->
+<table class="table">
+    <thead>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email</td>
+            <td>Phone Number</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Loop through all users and display inputs for editing entry fields -->
+        <tr *ngFor="let user of users; let i = index">
+            <td>
+                <input type="text" [(ngModel)]="user.firstName" required> 
+            </td>
+            <td>
+                <input type="text"[(ngModel)]="user.lastName" required> 
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="user.emailAddress" required> 
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="user.phoneNumber" required>
+                <!-- Hidden inputs for non-entry user fields -->
+                <input type="hidden" [(ngModel)]="user.id" required> 
+                <input type="hidden" [(ngModel)]="user.admin" required>
+            </td>
+            <td>
+                <!-- button to save existing user -->
+                <button (click)="saveUser(user)">Save User</button>
+            </td>
+        </tr>
+        <!-- Fields for adding a new user -->
+        <tr>
+            <td>
+                <input type="text" [(ngModel)]="newUser.firstName" required> 
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="newUser.lastName"required> 
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="newUser.emailAddress" required> 
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="newUser.phoneNumber" required> 
+                <input type="hidden" [(ngModel)]="newUser.id" required> 
+                <input type="hidden" [(ngModel)]="newUser.admin" required>
+            </td>
+            <td>
+                <!-- button to add new user -->
+                <button (click)="addUser()">Add User</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

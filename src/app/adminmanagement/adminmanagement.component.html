@@ -1,0 +1,30 @@
+<table class="table">
+    <!-- Display list of admins -->
+    <thead>
+        <tr>
+            <td>Email</td>
+            <td>Password</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let admin of admins">
+            <td>{{admin.email}}</td>
+            <td>{{admin.password}}</td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <!-- Input for new admin fields -->
+    <h3>Add a new admin</h3>
+    <form class="form-inline" (submit)="addAdmin()" [formGroup]="adminForm">
+        <input type="text"
+            class="form-control"
+            placeholder="Email"
+            formControlName="email">
+        <input type="text"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password">
+        <button type="submit">Add new admin</button>
+    </form>
+</div>

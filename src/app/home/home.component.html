@@ -1,0 +1,6 @@
+<!-- Nav-bar header determining which list view to display -->
+<app-header [currentView]="currentView" (viewChanged)="viewChangeHandler($event)"></app-header>
+<!-- Survey-template list view -->
+<app-surveylist *ngIf="currentView == 'surveyList'"></app-surveylist>
+<!-- User list view -->
+<app-userlist *ngIf="currentView == 'userList'"></app-userlist>

@@ -1,0 +1,20 @@
+<div class="row">
+    <!-- Survey template name for editing -->
+    <div class="col-md-12">
+        <input type="text" [(ngModel)]="editingTemplate.name">
+    </div>
+    <!-- List all survey questions in inputs for editing -->
+    <div class="col-md-12" *ngFor="let question of editingTemplate.questions; let i = index; trackBy:trackByIndex">
+        <input type="text" [(ngModel)]="editingTemplate.questions[i]">
+    </div>
+    <!-- Add a new question option, with linked button on the row to add the question to the survey template
+    in edit mode -->
+    <div class="col-md-10" >
+        <input type="text" [(ngModel)]="newQuestion">
+    </div>
+    <div class="col-md-2">
+        <button (click)="addQuestion()">Add question</button>
+    </div>
+</div>
+<!-- Button for saving the new template -->
+<button (click)="saveEditing()">Save Template</button>

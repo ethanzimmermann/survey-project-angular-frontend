@@ -1,0 +1,49 @@
+<!-- Display for survey reporting -->
+<h2 mat-dialog-title>{{template.name}} Survey Report</h2>
+
+<mat-dialog-content>
+    <!-- List all totals for each survey question associated with the template -->
+    <div class="row border-between" *ngFor="let question of template.questions; let i = index">
+        <div class="col-md-4"><label>{{question}}</label></div>
+        <div class="col-md-2"><label>Yes Count: {{answerCounts[i].yes}}</label></div>
+        <div class="col-md-2"><label>No Count: {{answerCounts[i].no}}</label></div>
+        <div class="col-md-2"><label>Yes Percentage: {{(answerCounts[i].yes/(answerCounts[i].yes+answerCounts[i].no))*100}}%</label></div>
+        <div class="col-md-2"><label>No Percentage: {{(answerCounts[i].no/(answerCounts[i].yes+answerCounts[i].no))*100}}%</label></div>
+    </div>
+    <!-- Display all existing surveys of this type as the assigned users' names and the survey status -->
+    <div class="row">
+        <div class="col-md-3">
+            User First Name
+        </div>
+        <div class="col-md-3">
+            User Last Name
+        </div>
+        <div class="col-md-3">
+            Survey Status
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+    <div class="row" *ngFor="let surveyUser of surveyUserPairs; let k=index">
+        <div class="col-md-3">
+            {{surveyUser.user.firstName}}
+        </div>
+        <div class="col-md-3">
+            {{surveyUser.user.lastName}}
+        </div>
+        <div class="col-md-3">
+            {{surveyUser.survey.status}}
+        </div>
+        <div class="col-md-3">
+            <!-- Button to display answers for a specific survey; Only available if the survey is past the notviewed status -->
+            <button (click)="toggleDetails(k)" *ngIf="surveyUser.survey.status!='notviewed'">Show Details</button>
+        </div>
+        <!-- List of answers for a specific survey. -->
+        <div class="col-md-12" *ngFor="let answer of surveyUser.survey.answers">
+            <div *ngIf="showSurveyDetails[k]">
+                {{answer.split(' || ')[0]}} - Answer: {{answer.split(' || ')[1]}}
+            </div>
+        </div>
+    </div>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+</mat-dialog-content>

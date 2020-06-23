@@ -1,0 +1,15 @@
+<!-- Dialog Box for Sending Surveys -->
+<h2 mat-dialog-title>Send Survey {{template.name}}</h2>
+
+<mat-dialog-content>
+    <!-- List of users to select from -->
+    <div *ngFor="let user of users">
+        <input type="checkbox" (click)="toggleUser(user)" [id]="user.id">
+        <label [for]="user.id">{{user.firstName}} {{user.lastName}}</label>
+    </div>
+</mat-dialog-content>
+<!-- Send and cancel buttons -->
+<mat-dialog-content>
+    <button class="mat-raised-button" (click)="close()">Cancel</button>
+    <button class="mat-raised-button mat-primary" (click)="send()">Send</button>
+</mat-dialog-content>

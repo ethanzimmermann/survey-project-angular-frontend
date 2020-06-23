@@ -1,0 +1,28 @@
+<h2>Survey List</h2>
+<!-- For each survey template -->
+<div class="row" *ngFor="let template of templates">
+    <!-- Display survey template name -->
+    <div class="col-md-12">
+        <h3>{{template.name}}</h3>
+    </div>
+    <!-- Display all questions associated with the survey -->
+    <div class="col-md-12" *ngFor="let question of template.questions">
+        {{question}}
+    </div>
+    <!-- Option for editing a survey template -->
+    <div class="col-md-2">
+        <button (click)="editTemplate(template)">Edit Template</button>
+    </div>
+    <!-- Option for sending a survey to users -->
+    <div class="col-md-2">
+        <button (click)="openDialogSend(template)">Send Survey</button>
+    </div>
+    <!-- Option for viewing survey stats -->
+    <div class="col-md-2">
+        <button (click)="openDialogReport(template)">View Surveys</button>
+    </div>
+</div>
+<!-- Button for creating a new survey template -->
+<button (click)="createTemplate()">New Template</button>
+<!-- Sub-component to display only when editing a survey-template -->
+<app-surveyedit *ngIf="editing" [editingTemplate]="editingTemplate" (saveTemplate)="saveTemplateHandler($event)"></app-surveyedit>
